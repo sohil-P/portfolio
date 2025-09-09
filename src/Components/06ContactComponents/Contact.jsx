@@ -1,4 +1,52 @@
+import { useState } from "react";
+
 function Contact() {
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
+
+    // Step 1: Overlay show karo (loading)
+    setShowOverlay(true);
+    setShowAlert(false);
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbx5b69U3IRBBFxGDP1UJhS4RdvDYmJ7ge2fx-QEPxwUq7IYA1aMULMxFuLHNgZoWVzDsQ/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.result === "Success") {
+        setAlertMessage("Message sent successfully!");
+        setShowAlert(true);
+        form.reset(); // form clear ho jaayega
+      } else {
+        setAlertMessage("Failed to send message. Try again!");
+        setShowAlert(true);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setAlertMessage("Something went wrong!");
+      setShowAlert(true);
+    }
+  };
+
+  // https://script.google.com/macros/s/AKfycbx5b69U3IRBBFxGDP1UJhS4RdvDYmJ7ge2fx-QEPxwUq7IYA1aMULMxFuLHNgZoWVzDsQ/exec
+
   return (
     <section
       id="contact"
@@ -16,7 +64,7 @@ function Contact() {
           feedback, please use the form below.
         </p>
 
-        <form className="max-w-2xl mx-auto">
+        <form className="max-w-2xl mx-auto" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 mb-8">
             <input
               type="text"
@@ -51,6 +99,24 @@ function Contact() {
           </button>
         </form>
       </div>
+
+      {showOverlay && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          {!showAlert ? (
+            <div className="text-white text-xl animate-pulse">Sending...</div>
+          ) : (
+            <div className="bg-white dark:bg-[#1E1E1E] text-center p-6 rounded-xl shadow-xl max-w-sm mx-auto">
+              <p className="mb-4 text-lg dark:text-white">{alertMessage}</p>
+              <button
+                onClick={() => setShowOverlay(false)}
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 active:scale-95 duration-200"
+              >
+                OK
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }

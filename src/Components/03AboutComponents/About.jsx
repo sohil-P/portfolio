@@ -15,7 +15,7 @@ function About() {
         <div className="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
           <div className="max-w-max mx-auto relative">
             <img
-              src="./Images/my-image2.webp"
+              src="./Images/my-image3.webp"
               alt="My Image"
               className="w-64 sm:w-80 rounded-3xl max-w-none"
             />
