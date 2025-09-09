@@ -17,7 +17,7 @@ function Portfolio() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-10 gap-5">
-          <div className="aspect-square bg-[url('./Images/work-1.webp')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
+          <div className="aspect-square bg-[url('/Images/work-1.webp')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
             <div className="bg-[#E5E5E5] dark:bg-[#31363F] w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-300 group-hover:bottom-7">
               <div>
                 <h2 className="font-semibold text-[#1b1f23] dark:text-[#f3f7f4]">
@@ -28,7 +28,7 @@ function Portfolio() {
                 </p>
               </div>
               <div className="border rounded-full border-[#1E212D] w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] bg-[#1E212D] dark:bg-[#E2DFD0]">
-                <i class="fa-solid fa-paper-plane text-xl text-[#fafdff] dark:text-[#1b1f23]"></i>
+                <i className="fa-solid fa-paper-plane text-xl text-[#fafdff] dark:text-[#1b1f23]"></i>
               </div>
             </div>
           </div>
