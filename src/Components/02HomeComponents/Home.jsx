@@ -32,7 +32,7 @@ function Home() {
             Contact me <i class="fa-solid fa-arrow-right-long w-4 mt-0.5"></i>
           </a>
           <a
-            href="./Images/Sohil-Resume.pdf"
+            href="./Images/(F)sohil-resume.pdf"
             download
             className="px-10 py-3 border rounded-full border-gray-500 bg-transparent text-[#1b1f23] flex items-center gap-2 transition-transform duration-150 active:scale-90 dark:text-[#f3f7f4]"
           >
